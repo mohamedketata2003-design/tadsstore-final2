@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Cart</title>
+  <link rel="stylesheet" href="tejrab.css" />
+
+  
+</head>
+<body>
+  <script type="module">
+  import emailjs from 'https://cdn.emailjs.com/dist/email.min.mjs';
+
+  emailjs.init("EeQfYEqajo9-uX59A");
+
+  window.sendEmail = function() {
+  console.log("sendEmail triggered");
+  // ... rest of your code
+}
+
+    let message = "🛒 Shopping List:\n";
+    cart.forEach(item => {
+      message += `• ${item.name} x ${item.quantity}\n`;
+    });
+
+    emailjs.send("service_b64w9vy", "template_ugtn2z9", {
+      message: message,
+      to_name: "mohamed ketata",
+      reply_to: "tadsvicetresorier@gmail.com"
+    })
+    .then(response => {
+      alert("✅ Email sent successfully!");
+      console.log("SUCCESS", response);
+    })
+    .catch(error => {
+      alert("❌ Failed to send email: " + error.text);
+      console.error("ERROR", error);
+    });
+  ;
+</script>
+  <div class="container">
+    <h2>Basket</h2>
+
+    <!-- Cart items -->
+    <div class="cart-list">
+    </div>
+    
+    <!-- Summary -->
+    <div class="summary">
+      <h3>Summary</h3>
+      <p>Subtotal: <span id="subtotal">TND 0.00</span></p>
+      <p>Shipment: <span id="shipment">TND 0.00</span></p>
+      <p>Discounts: <span id="discounts">- TND 0.00</span></p>
+      <h4>Total: <span id="total">TND 0.00</span></h4>
+    </div>
+
+    <!-- Back button -->
+    <a href="test3.html" class="btn outline">← Back to Home</a>
+
+    <!-- Send Email button -->
+    <button onclick="sendEmail()">Send Order</button>
+
+  </div>
+
+  <!-- JavaScript files -->
+  <script type="module" src="cartcreation.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script src="cartcreation.js"></script>
+
+
+
+
+
+</body>
+</html>
